@@ -6251,6 +6251,7 @@ extern "C" {
     ) -> ::c_int;
 }
 
+#[cfg(feature = "extern_fn")]
 pub unsafe fn mach_task_self() -> ::mach_port_t {
     mach_task_self_
 }

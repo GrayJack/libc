@@ -1587,10 +1587,12 @@ f! {
 }
 
 safe_f! {
+    #[cfg(feature = "extern_fn")]
     pub fn SIGRTMAX() -> ::c_int {
         unsafe { __libc_current_sigrtmax() }
     }
 
+    #[cfg(feature = "extern_fn")]
     pub fn SIGRTMIN() -> ::c_int {
         unsafe { __libc_current_sigrtmin() }
     }
