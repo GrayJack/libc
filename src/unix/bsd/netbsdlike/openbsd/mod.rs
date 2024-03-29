@@ -1962,6 +1962,7 @@ safe_f! {
     }
 }
 
+#[cfg(feature = "extern_fn")]
 extern "C" {
     pub fn gettimeofday(tp: *mut ::timeval, tz: *mut ::timezone) -> ::c_int;
     pub fn settimeofday(tp: *const ::timeval, tz: *const ::timezone) -> ::c_int;
@@ -2112,6 +2113,7 @@ extern "C" {
     pub fn reboot(mode: ::c_int) -> ::c_int;
 }
 
+#[cfg(feature = "extern_fn")]
 #[link(name = "execinfo")]
 extern "C" {
     pub fn backtrace(addrlist: *mut *mut ::c_void, len: ::size_t) -> ::size_t;
@@ -2128,6 +2130,7 @@ extern "C" {
     ) -> *mut *mut ::c_char;
 }
 
+#[cfg(feature = "extern_fn")]
 extern "C" {
     pub fn statfs(path: *const ::c_char, buf: *mut statfs) -> ::c_int;
     pub fn fstatfs(fd: ::c_int, buf: *mut statfs) -> ::c_int;

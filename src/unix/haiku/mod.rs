@@ -1588,6 +1588,7 @@ safe_f! {
     }
 }
 
+#[cfg(feature = "extern_fn")]
 extern "C" {
     pub fn getrlimit(resource: ::c_int, rlim: *mut ::rlimit) -> ::c_int;
     pub fn setrlimit(resource: ::c_int, rlim: *const ::rlimit) -> ::c_int;
@@ -2018,6 +2019,7 @@ extern "C" {
     ) -> ::c_int;
 }
 
+#[cfg(feature = "extern_fn")]
 #[link(name = "bsd")]
 extern "C" {
     pub fn lutimes(file: *const ::c_char, times: *const ::timeval) -> ::c_int;
@@ -2058,6 +2060,7 @@ extern "C" {
     ) -> ::c_int;
 }
 
+#[cfg(feature = "extern_fn")]
 #[link(name = "gnu")]
 extern "C" {
     pub fn memmem(

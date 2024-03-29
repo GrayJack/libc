@@ -896,6 +896,7 @@ pub const SYS_set_mempolicy_home_node: ::c_long = 450;
 pub const PROT_BTI: ::c_int = 0x10;
 pub const PROT_MTE: ::c_int = 0x20;
 
+#[cfg(feature = "extern_fn")]
 extern "C" {
     pub fn sysctl(
         name: *mut ::c_int,

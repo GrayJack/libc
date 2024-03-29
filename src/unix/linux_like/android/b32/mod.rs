@@ -228,6 +228,7 @@ pub const UT_HOSTSIZE: usize = 16;
 pub const SIGSTKSZ: ::size_t = 8192;
 pub const MINSIGSTKSZ: ::size_t = 2048;
 
+#[cfg(feature = "extern_fn")]
 extern "C" {
     pub fn timegm64(tm: *const ::tm) -> ::time64_t;
 }

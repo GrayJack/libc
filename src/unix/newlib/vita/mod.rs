@@ -171,6 +171,7 @@ pub const PTHREAD_STACK_MIN: ::size_t = 32 * 1024;
 
 pub const IP_HDRINCL: ::c_int = 2;
 
+#[cfg(feature = "extern_fn")]
 extern "C" {
     pub fn futimens(fd: ::c_int, times: *const ::timespec) -> ::c_int;
     pub fn writev(fd: ::c_int, iov: *const ::iovec, iovcnt: ::c_int) -> ::ssize_t;

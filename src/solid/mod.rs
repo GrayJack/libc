@@ -420,6 +420,7 @@ impl ::Clone for fpos_t {
     }
 }
 
+#[cfg(feature = "extern_fn")]
 extern "C" {
     // ctype.h
     pub fn isalnum(c: c_int) -> c_int;

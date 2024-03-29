@@ -797,6 +797,7 @@ pub const REG_TRAPNO: ::c_int = 20;
 pub const REG_OLDMASK: ::c_int = 21;
 pub const REG_CR2: ::c_int = 22;
 
+#[cfg(feature = "extern_fn")]
 extern "C" {
     pub fn getcontext(ucp: *mut ucontext_t) -> ::c_int;
     pub fn setcontext(ucp: *const ucontext_t) -> ::c_int;

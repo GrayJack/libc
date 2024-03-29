@@ -3575,6 +3575,7 @@ safe_f! {
 
 }
 
+#[cfg(feature = "extern_fn")]
 extern "C" {
     pub fn getrlimit64(resource: ::c_int, rlim: *mut rlimit64) -> ::c_int;
     pub fn setrlimit64(resource: ::c_int, rlim: *const rlimit64) -> ::c_int;

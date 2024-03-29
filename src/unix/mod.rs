@@ -417,6 +417,7 @@ missing! {
     pub enum fpos_t {} // FIXME: fill this out with a struct
 }
 
+#[cfg(feature = "extern_fn")]
 extern "C" {
     pub fn isalnum(c: c_int) -> c_int;
     pub fn isalpha(c: c_int) -> c_int;
@@ -560,6 +561,7 @@ extern "C" {
     pub fn memset(dest: *mut c_void, c: c_int, n: size_t) -> *mut c_void;
 }
 
+#[cfg(feature = "extern_fn")]
 extern "C" {
     #[cfg_attr(target_os = "netbsd", link_name = "__getpwnam50")]
     pub fn getpwnam(name: *const ::c_char) -> *mut passwd;
@@ -1436,7 +1438,7 @@ cfg_if! {
         }
     }
 }
-
+#[cfg(feature = "extern_fn")]
 cfg_if! {
     if #[cfg(target_os = "nto")] {
         extern {
@@ -1496,6 +1498,7 @@ cfg_if! {
     }
 }
 
+#[cfg(feature = "extern_fn")]
 cfg_if! {
    if #[cfg(not(any(target_os = "solaris",
                     target_os = "illumos",

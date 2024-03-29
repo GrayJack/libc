@@ -2508,6 +2508,7 @@ safe_f! {
     }
 }
 
+#[cfg(feature = "extern_fn")]
 extern "C" {
     pub fn ntp_adjtime(buf: *mut timex) -> ::c_int;
     pub fn ntp_gettime(buf: *mut ntptimeval) -> ::c_int;
@@ -2864,6 +2865,7 @@ extern "C" {
     pub fn reboot(mode: ::c_int, bootstr: *mut ::c_char) -> ::c_int;
 }
 
+#[cfg(feature = "extern_fn")]
 #[link(name = "rt")]
 extern "C" {
     pub fn aio_read(aiocbp: *mut aiocb) -> ::c_int;
@@ -2886,6 +2888,7 @@ extern "C" {
     ) -> ::c_int;
 }
 
+#[cfg(feature = "extern_fn")]
 #[link(name = "util")]
 extern "C" {
     #[cfg_attr(target_os = "netbsd", link_name = "__getpwent_r50")]
@@ -3065,6 +3068,7 @@ extern "C" {
     pub fn kinfo_getvmmap(pid: ::pid_t, cntp: *mut ::size_t) -> *mut kinfo_vmentry;
 }
 
+#[cfg(feature = "extern_fn")]
 #[link(name = "execinfo")]
 extern "C" {
     pub fn backtrace(addrlist: *mut *mut ::c_void, len: ::size_t) -> ::size_t;
@@ -3087,6 +3091,7 @@ extern "C" {
     ) -> ::c_int;
 }
 
+#[cfg(feature = "extern_fn")]
 extern "C" {
     pub fn getmntinfo(mntbufp: *mut *mut ::statvfs, flags: ::c_int) -> ::c_int;
     pub fn getvfsstat(buf: *mut statvfs, bufsize: ::size_t, flags: ::c_int) -> ::c_int;

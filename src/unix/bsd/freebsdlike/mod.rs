@@ -1462,6 +1462,7 @@ safe_f! {
     }
 }
 
+#[cfg(feature = "extern_fn")]
 extern "C" {
     pub fn sem_destroy(sem: *mut sem_t) -> ::c_int;
     pub fn sem_init(sem: *mut sem_t, pshared: ::c_int, value: ::c_uint) -> ::c_int;
@@ -1783,6 +1784,7 @@ extern "C" {
     ) -> ::c_int;
 }
 
+#[cfg(feature = "extern_fn")]
 #[link(name = "rt")]
 extern "C" {
     pub fn mq_close(mqd: ::mqd_t) -> ::c_int;
@@ -1819,6 +1821,7 @@ extern "C" {
     pub fn mq_unlink(name: *const ::c_char) -> ::c_int;
 }
 
+#[cfg(feature = "extern_fn")]
 #[link(name = "util")]
 extern "C" {
     pub fn openpty(
@@ -1844,6 +1847,7 @@ extern "C" {
     ) -> *mut ::c_char;
 }
 
+#[cfg(feature = "extern_fn")]
 #[link(name = "execinfo")]
 extern "C" {
     pub fn backtrace(addrlist: *mut *mut ::c_void, len: ::size_t) -> ::size_t;
@@ -1855,6 +1859,7 @@ extern "C" {
     ) -> ::c_int;
 }
 
+#[cfg(feature = "extern_fn")]
 #[link(name = "kvm")]
 extern "C" {
     pub fn kvm_open(

@@ -43,6 +43,7 @@ s! {
     }
 }
 
+#[cfg(feature = "extern_fn")]
 extern "C" {
     pub fn getcontext(ucp: *mut ucontext_t) -> ::c_int;
     pub fn setcontext(ucp: *const ucontext_t) -> ::c_int;

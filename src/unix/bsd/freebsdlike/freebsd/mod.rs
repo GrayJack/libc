@@ -4971,6 +4971,7 @@ safe_f! {
     }
 }
 
+#[cfg(feature = "extern_fn")]
 cfg_if! {
     if #[cfg(not(any(freebsd10, freebsd11)))] {
         extern "C" {
@@ -4991,6 +4992,7 @@ cfg_if! {
     }
 }
 
+#[cfg(feature = "extern_fn")]
 extern "C" {
     #[cfg_attr(doc, doc(alias = "__errno_location"))]
     #[cfg_attr(doc, doc(alias = "errno"))]
@@ -5524,6 +5526,7 @@ extern "C" {
     pub fn close_range(lowfd: ::c_uint, highfd: ::c_uint, flags: ::c_int) -> ::c_int;
 }
 
+#[cfg(feature = "extern_fn")]
 #[link(name = "memstat")]
 extern "C" {
     pub fn memstat_strerror(error: ::c_int) -> *const ::c_char;
@@ -5540,6 +5543,7 @@ extern "C" {
     pub fn memstat_get_name(mtp: *const memory_type) -> *const ::c_char;
 }
 
+#[cfg(feature = "extern_fn")]
 #[link(name = "kvm")]
 extern "C" {
     pub fn kvm_dpcpu_setcpu(kd: *mut ::kvm_t, cpu: ::c_uint) -> ::c_int;
@@ -5577,6 +5581,7 @@ extern "C" {
     ) -> ::ssize_t;
 }
 
+#[cfg(feature = "extern_fn")]
 #[link(name = "util")]
 extern "C" {
     pub fn extattr_namespace_to_string(
@@ -5627,6 +5632,7 @@ extern "C" {
     // FIXME: pidfile_signal in due time (both manpage present and updated image snapshot)
 }
 
+#[cfg(feature = "extern_fn")]
 #[link(name = "procstat")]
 extern "C" {
     pub fn procstat_open_sysctl() -> *mut procstat;
@@ -5719,6 +5725,7 @@ extern "C" {
     ) -> ::c_int;
 }
 
+#[cfg(feature = "extern_fn")]
 #[link(name = "rt")]
 extern "C" {
     pub fn timer_create(clock_id: clockid_t, evp: *mut sigevent, timerid: *mut timer_t) -> ::c_int;
@@ -5733,6 +5740,7 @@ extern "C" {
     ) -> ::c_int;
 }
 
+#[cfg(feature = "extern_fn")]
 #[link(name = "devstat")]
 extern "C" {
     pub fn devstat_getnumdevs(kd: *mut ::kvm_t) -> ::c_int;

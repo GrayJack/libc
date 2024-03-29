@@ -1664,6 +1664,7 @@ safe_f! {
     }
 }
 
+#[cfg(feature = "extern_fn")]
 extern "C" {
     #[doc(hidden)]
     pub fn __libc_current_sigrtmax() -> ::c_int;
@@ -1772,6 +1773,7 @@ extern "C" {
 //
 // * musl and Emscripten has 64-bit versions only so aliases the LFS64 symbols to the standard ones
 // * ulibc doesn't have preadv64/pwritev64
+#[cfg(feature = "extern_fn")]
 cfg_if! {
     if #[cfg(not(any(target_env = "musl", target_os = "emscripten")))] {
         extern "C" {
@@ -1830,6 +1832,7 @@ cfg_if! {
     }
 }
 
+#[cfg(feature = "extern_fn")]
 cfg_if! {
     if #[cfg(not(any(target_env = "uclibc", target_env = "musl", target_os = "emscripten")))] {
         extern "C" {
@@ -1849,6 +1852,7 @@ cfg_if! {
     }
 }
 
+#[cfg(feature = "extern_fn")]
 cfg_if! {
     if #[cfg(not(target_env = "uclibc"))] {
         extern "C" {

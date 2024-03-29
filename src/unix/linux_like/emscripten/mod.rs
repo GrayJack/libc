@@ -1659,6 +1659,7 @@ safe_f! {
     }
 }
 
+#[cfg(feature = "extern_fn")]
 extern "C" {
     pub fn getrlimit(resource: ::c_int, rlim: *mut ::rlimit) -> ::c_int;
     pub fn setrlimit(resource: ::c_int, rlim: *const ::rlimit) -> ::c_int;
@@ -1777,7 +1778,9 @@ extern "C" {
 }
 
 // Alias <foo> to <foo>64 to mimic glibc's LFS64 support
+#[cfg(feature = "extern_fn")]
 mod lfs64;
+#[cfg(feature = "extern_fn")]
 pub use self::lfs64::*;
 
 #[macro_use]

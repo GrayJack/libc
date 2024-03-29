@@ -103,6 +103,7 @@ pub const BIOCSRTIMEOUT: ::c_ulong = 0x8008426d;
 pub const BIOCGRTIMEOUT: ::c_ulong = 0x4008426e;
 pub const BIOCSETFNR: ::c_ulong = 0x8008427e;
 
+#[cfg(feature = "extern_fn")]
 extern "C" {
     pub fn exchangedata(
         path1: *const ::c_char,

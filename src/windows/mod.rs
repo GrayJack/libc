@@ -274,6 +274,7 @@ impl ::Clone for fpos_t {
 // Special handling for all print and scan type functions because of https://github.com/rust-lang/libc/issues/2860
 cfg_if! {
     if #[cfg(not(feature = "rustc-dep-of-std"))] {
+        #[cfg(feature = "extern_fn")]
         #[cfg_attr(
             all(windows, target_env = "msvc"),
             link(name = "legacy_stdio_definitions")
@@ -285,6 +286,7 @@ cfg_if! {
     }
 }
 
+#[cfg(feature = "extern_fn")]
 extern "C" {
     pub fn isalnum(c: c_int) -> c_int;
     pub fn isalpha(c: c_int) -> c_int;
@@ -525,6 +527,7 @@ extern "C" {
     pub fn wputenv_s(envstring: *const ::wchar_t, value_string: *const ::wchar_t) -> ::errno_t;
 }
 
+#[cfg(feature = "extern_fn")]
 extern "system" {
     pub fn listen(s: SOCKET, backlog: ::c_int) -> ::c_int;
     pub fn accept(s: SOCKET, addr: *mut ::sockaddr, addrlen: *mut ::c_int) -> SOCKET;

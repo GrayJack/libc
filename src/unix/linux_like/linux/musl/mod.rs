@@ -820,6 +820,7 @@ cfg_if! {
     }
 }
 
+#[cfg(feature = "extern_fn")]
 extern "C" {
     pub fn sendmmsg(
         sockfd: ::c_int,
@@ -906,7 +907,9 @@ extern "C" {
 }
 
 // Alias <foo> to <foo>64 to mimic glibc's LFS64 support
+#[cfg(feature = "extern_fn")]
 mod lfs64;
+#[cfg(feature = "extern_fn")]
 pub use self::lfs64::*;
 
 cfg_if! {

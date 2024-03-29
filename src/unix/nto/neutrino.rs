@@ -507,6 +507,7 @@ pub const _NTO_SCTL_SEM_VALUE: u32 = 6;
 pub const _NTO_CLIENTINFO_GETGROUPS: u32 = 1;
 pub const _NTO_CLIENTINFO_GETTYPEID: u32 = 2;
 
+#[cfg(feature = "extern_fn")]
 extern "C" {
     pub fn ChannelCreate(__flags: ::c_uint) -> ::c_int;
     pub fn ChannelCreate_r(__flags: ::c_uint) -> ::c_int;

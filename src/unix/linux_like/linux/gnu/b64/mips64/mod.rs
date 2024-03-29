@@ -907,6 +907,7 @@ pub const B4000000: ::speed_t = 0o010017;
 
 pub const EHWPOISON: ::c_int = 168;
 
+#[cfg(feature = "extern_fn")]
 extern "C" {
     pub fn sysctl(
         name: *mut ::c_int,

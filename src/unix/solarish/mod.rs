@@ -2695,6 +2695,7 @@ safe_f! {
     }
 }
 
+#[cfg(feature = "extern_fn")]
 extern "C" {
     pub fn getrlimit(resource: ::c_int, rlim: *mut ::rlimit) -> ::c_int;
     pub fn setrlimit(resource: ::c_int, rlim: *const ::rlimit) -> ::c_int;
@@ -3201,6 +3202,7 @@ extern "C" {
     pub fn __makedev(version: ::c_int, majdev: ::major_t, mindev: ::minor_t) -> ::dev_t;
 }
 
+#[cfg(feature = "extern_fn")]
 #[link(name = "sendfile")]
 extern "C" {
     pub fn sendfile(out_fd: ::c_int, in_fd: ::c_int, off: *mut ::off_t, len: ::size_t)
@@ -3213,6 +3215,7 @@ extern "C" {
     ) -> ::ssize_t;
 }
 
+#[cfg(feature = "extern_fn")]
 #[link(name = "lgrp")]
 extern "C" {
     pub fn lgrp_init(view: lgrp_view_t) -> lgrp_cookie_t;
@@ -3267,7 +3270,9 @@ pub unsafe fn makedev(maj: ::major_t, min: ::minor_t) -> ::dev_t {
     __makedev(NEWDEV, maj, min)
 }
 
+#[cfg(feature = "extern_fn")]
 mod compat;
+#[cfg(feature = "extern_fn")]
 pub use self::compat::*;
 
 cfg_if! {

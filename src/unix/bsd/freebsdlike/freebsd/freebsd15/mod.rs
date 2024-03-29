@@ -491,6 +491,7 @@ f! {
     }
 }
 
+#[cfg(feature = "extern_fn")]
 extern "C" {
     pub fn setgrent();
     pub fn mprotect(addr: *mut ::c_void, len: ::size_t, prot: ::c_int) -> ::c_int;
@@ -524,6 +525,7 @@ extern "C" {
     pub fn basename(path: *mut ::c_char) -> *mut ::c_char;
 }
 
+#[cfg(feature = "extern_fn")]
 #[link(name = "kvm")]
 extern "C" {
     pub fn kvm_kerndisp(kd: *mut ::kvm_t) -> ::kssize_t;

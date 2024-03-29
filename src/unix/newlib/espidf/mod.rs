@@ -89,6 +89,7 @@ pub const MSG_EOR: ::c_int = 0x08;
 
 pub const PTHREAD_STACK_MIN: ::size_t = 768;
 
+#[cfg(feature = "extern_fn")]
 extern "C" {
     pub fn pthread_create(
         native: *mut ::pthread_t,

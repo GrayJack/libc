@@ -5301,6 +5301,7 @@ safe_f! {
     }
 }
 
+#[cfg(feature = "extern_fn")]
 cfg_if! {
     if #[cfg(all(not(target_env = "uclibc"), not(target_env = "ohos")))] {
         extern "C" {
@@ -5325,6 +5326,7 @@ cfg_if! {
     }
 }
 
+#[cfg(feature = "extern_fn")]
 cfg_if! {
     if #[cfg(not(target_env = "uclibc"))] {
         extern "C" {
@@ -5378,6 +5380,7 @@ cfg_if! {
 }
 
 // These functions are not available on OpenHarmony
+#[cfg(feature = "extern_fn")]
 cfg_if! {
     if #[cfg(not(target_env = "ohos"))] {
         extern "C" {
@@ -5445,6 +5448,7 @@ cfg_if! {
     }
 }
 
+#[cfg(feature = "extern_fn")]
 extern "C" {
     #[cfg_attr(
         not(any(target_env = "musl", target_env = "ohos")),
@@ -6092,6 +6096,7 @@ extern "C" {
 // LFS64 extensions
 //
 // * musl has 64-bit versions only so aliases the LFS64 symbols to the standard ones
+#[cfg(feature = "extern_fn")]
 cfg_if! {
     if #[cfg(not(target_env = "musl"))] {
         extern "C" {

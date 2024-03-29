@@ -1606,6 +1606,7 @@ safe_f! {
     }
 }
 
+#[cfg(feature = "extern_fn")]
 extern "C" {
     pub fn __errno_location() -> *mut ::c_int;
     pub fn setgrent();
@@ -1686,6 +1687,7 @@ extern "C" {
     ) -> ::c_int;
 }
 
+#[cfg(feature = "extern_fn")]
 #[link(name = "rt")]
 extern "C" {
     pub fn aio_cancel(fd: ::c_int, aiocbp: *mut aiocb) -> ::c_int;
@@ -1710,6 +1712,7 @@ extern "C" {
     pub fn freezero(ptr: *mut ::c_void, size: ::size_t);
 }
 
+#[cfg(feature = "extern_fn")]
 #[link(name = "kvm")]
 extern "C" {
     pub fn kvm_vm_map_entry_first(

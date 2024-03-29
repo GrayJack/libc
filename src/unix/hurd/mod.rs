@@ -3570,6 +3570,7 @@ f! {
     }
 }
 
+#[cfg(feature = "extern_fn")]
 extern "C" {
     pub fn lutimes(file: *const ::c_char, times: *const ::timeval) -> ::c_int;
 

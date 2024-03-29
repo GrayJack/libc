@@ -659,6 +659,7 @@ pub const RB_AUTOBOOT: ::c_int = 0;
 
 pub const TCP_INFO: ::c_int = 9;
 
+#[cfg(feature = "extern_fn")]
 #[link(name = "util")]
 extern "C" {
     pub fn setgrent();
@@ -838,6 +839,7 @@ extern "C" {
     ) -> ::c_int;
 }
 
+#[cfg(feature = "extern_fn")]
 extern "C" {
     pub fn reallocarray(ptr: *mut ::c_void, nmemb: ::size_t, size: ::size_t) -> *mut ::c_void;
     pub fn gethostid() -> ::c_long;

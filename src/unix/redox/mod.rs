@@ -1079,6 +1079,7 @@ safe_f! {
     }
 }
 
+#[cfg(feature = "extern_fn")]
 extern "C" {
     // errno.h
     pub fn __errno_location() -> *mut ::c_int;

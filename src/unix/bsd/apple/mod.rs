@@ -5407,6 +5407,7 @@ safe_f! {
     }
 }
 
+#[cfg(feature = "extern_fn")]
 extern "C" {
     pub fn setgrent();
     #[doc(hidden)]
@@ -6254,6 +6255,7 @@ pub unsafe fn mach_task_self() -> ::mach_port_t {
     mach_task_self_
 }
 
+#[cfg(feature = "extern_fn")]
 cfg_if! {
     if #[cfg(target_os = "macos")] {
         extern "C" {
@@ -6261,6 +6263,7 @@ cfg_if! {
         }
     }
 }
+#[cfg(feature = "extern_fn")]
 cfg_if! {
     if #[cfg(any(target_os = "macos", target_os = "ios", target_os = "tvos"))] {
         extern "C" {

@@ -438,6 +438,7 @@ pub const NOEXPR: ::nl_item = 0x50001;
 pub const YESSTR: ::nl_item = 0x50002;
 pub const NOSTR: ::nl_item = 0x50003;
 
+#[cfg(feature = "extern_fn")]
 #[cfg_attr(
     feature = "rustc-dep-of-std",
     link(

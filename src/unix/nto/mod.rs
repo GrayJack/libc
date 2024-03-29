@@ -2864,6 +2864,7 @@ safe_f! {
 
 // Network related functions are provided by libsocket and regex
 // functions are provided by libregex.
+#[cfg(feature = "extern_fn")]
 #[link(name = "socket")]
 #[link(name = "regex")]
 
@@ -3431,6 +3432,7 @@ extern "C" {
 
 // Models the implementation in stdlib.h.  Ctest will fail if trying to use the
 // default symbol from libc
+#[cfg(feature = "extern_fn")]
 pub unsafe fn atexit(cb: extern "C" fn()) -> ::c_int {
     extern "C" {
         static __dso_handle: *mut ::c_void;

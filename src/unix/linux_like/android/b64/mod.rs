@@ -313,6 +313,7 @@ pub const UT_LINESIZE: usize = 32;
 pub const UT_NAMESIZE: usize = 32;
 pub const UT_HOSTSIZE: usize = 256;
 
+#[cfg(feature = "extern_fn")]
 f! {
     // Sadly, Android before 5.0 (API level 21), the accept4 syscall is not
     // exposed by the libc. As work-around, we implement it through `syscall`
@@ -329,6 +330,7 @@ f! {
     }
 }
 
+#[cfg(feature = "extern_fn")]
 extern "C" {
     pub fn getauxval(type_: ::c_ulong) -> ::c_ulong;
     pub fn __system_property_wait(

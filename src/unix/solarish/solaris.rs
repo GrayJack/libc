@@ -65,6 +65,7 @@ pub const F_DUPFD_CLOFORK: ::c_int = 49;
 pub const F_DUP2FD_CLOEXEC: ::c_int = 48;
 pub const F_DUP2FD_CLOFORK: ::c_int = 50;
 
+#[cfg(feature = "extern_fn")]
 extern "C" {
     pub fn fexecve(fd: ::c_int, argv: *const *mut ::c_char, envp: *const *mut ::c_char) -> ::c_int;
 

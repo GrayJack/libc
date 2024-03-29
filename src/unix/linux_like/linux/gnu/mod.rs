@@ -1256,6 +1256,7 @@ pub const REG_EEND: ::c_int = 14;
 pub const REG_ESIZE: ::c_int = 15;
 pub const REG_ERPAREN: ::c_int = 16;
 
+#[cfg(feature = "extern_fn")]
 extern "C" {
     pub fn fgetspent_r(
         fp: *mut ::FILE,

@@ -210,6 +210,7 @@ safe_f! {
     }
 }
 
+#[cfg(feature = "extern_fn")]
 extern "C" {
     pub fn pthread_create(
         native: *mut ::pthread_t,

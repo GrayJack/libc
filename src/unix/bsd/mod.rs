@@ -599,6 +599,7 @@ safe_f! {
     }
 }
 
+#[cfg(feature = "extern_fn")]
 extern "C" {
     #[cfg_attr(
         all(target_os = "macos", target_arch = "x86"),
@@ -915,6 +916,7 @@ extern "C" {
     ) -> ::size_t;
 }
 
+#[cfg(feature = "extern_fn")]
 cfg_if! {
     if #[cfg(not(target_os = "openbsd"))] {
         extern "C" {

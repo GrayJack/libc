@@ -472,6 +472,7 @@ f! {
     }
 }
 
+#[cfg(feature = "extern_fn")]
 extern "C" {
     pub fn setgrent();
     pub fn mprotect(addr: *mut ::c_void, len: ::size_t, prot: ::c_int) -> ::c_int;

@@ -2627,12 +2627,14 @@ safe_f! {
     }
 }
 
+#[cfg(feature = "extern_fn")]
 #[link(name = "thread")]
 extern "C" {
     pub fn thr_kill(id: thread_t, sig: ::c_int) -> ::c_int;
     pub fn thr_self() -> thread_t;
 }
 
+#[cfg(feature = "extern_fn")]
 #[link(name = "pthread")]
 extern "C" {
     pub fn pthread_atfork(
@@ -2751,6 +2753,7 @@ extern "C" {
     pub fn pthread_spin_unlock(lock: *mut pthread_spinlock_t) -> ::c_int;
 }
 
+#[cfg(feature = "extern_fn")]
 #[link(name = "iconv")]
 extern "C" {
     pub fn iconv(
@@ -2764,6 +2767,7 @@ extern "C" {
     pub fn iconv_open(tocode: *const ::c_char, fromcode: *const ::c_char) -> iconv_t;
 }
 
+#[cfg(feature = "extern_fn")]
 extern "C" {
     pub fn acct(filename: *const ::c_char) -> ::c_int;
     pub fn aio_cancel(fildes: ::c_int, aiocbp: *mut ::aiocb) -> ::c_int;

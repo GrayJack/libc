@@ -957,6 +957,7 @@ pub const EFL: ::c_int = 14;
 pub const UESP: ::c_int = 15;
 pub const SS: ::c_int = 16;
 
+#[cfg(feature = "extern_fn")]
 extern "C" {
     pub fn getrandom(buf: *mut ::c_void, buflen: ::size_t, flags: ::c_uint) -> ::ssize_t;
 }
