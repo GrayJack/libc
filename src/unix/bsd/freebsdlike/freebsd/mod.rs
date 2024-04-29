@@ -4846,6 +4846,7 @@ f! {
             as ::c_uint
     }
 
+    #[cfg(feature = "extern_fn")]
     pub fn MALLOCX_ALIGN(lg: ::c_uint) -> ::c_int {
         ffsl(lg as ::c_long - 1)
     }
@@ -4867,6 +4868,7 @@ f! {
         ::mem::size_of::<sockcred>() + ::mem::size_of::<::gid_t>() * ngrps
     }
 
+    #[cfg(feature = "extern_fn")]
     pub fn uname(buf: *mut ::utsname) -> ::c_int {
         __xuname(256, buf as *mut ::c_void)
     }
