@@ -3258,14 +3258,17 @@ extern "C" {
     pub fn lgrp_root(cookie: ::lgrp_cookie_t) -> ::lgrp_id_t;
 }
 
+#[cfg(feature = "extern_fn")]
 pub unsafe fn major(device: ::dev_t) -> ::major_t {
     __major(NEWDEV, device)
 }
 
+#[cfg(feature = "extern_fn")]
 pub unsafe fn minor(device: ::dev_t) -> ::minor_t {
     __minor(NEWDEV, device)
 }
 
+#[cfg(feature = "extern_fn")]
 pub unsafe fn makedev(maj: ::major_t, min: ::minor_t) -> ::dev_t {
     __makedev(NEWDEV, maj, min)
 }
