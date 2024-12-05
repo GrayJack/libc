@@ -895,7 +895,7 @@ cfg_if! {
     }
 }
 
-extern "C" {
+#[cfg(feature = "extern_fn")] extern "C" {
     pub fn sendmmsg(
         sockfd: c_int,
         msgvec: *mut crate::mmsghdr,

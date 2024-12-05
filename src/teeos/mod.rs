@@ -1004,7 +1004,7 @@ pub const PTHREAD_MUTEX_STALLED: c_int = 0;
 
 pub const PTHREAD_MUTEX_ROBUST: c_int = 1;
 
-extern "C" {
+#[cfg(feature = "extern_fn")] extern "C" {
     // ---- ALLOC -----------------------------------------------------------------------------
     pub fn calloc(nobj: size_t, size: size_t) -> *mut c_void;
 

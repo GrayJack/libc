@@ -222,7 +222,7 @@ safe_f! {
     }
 }
 
-extern "C" {
+#[cfg(feature = "extern_fn")] extern "C" {
     pub fn pthread_create(
         native: *mut crate::pthread_t,
         attr: *const crate::pthread_attr_t,

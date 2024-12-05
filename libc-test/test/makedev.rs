@@ -14,7 +14,7 @@
 mod t {
     use libc::{self, c_uint, dev_t};
 
-    extern "C" {
+    #[cfg(feature = "extern_fn")] extern "C" {
         pub fn makedev_ffi(major: c_uint, minor: c_uint) -> dev_t;
     }
 

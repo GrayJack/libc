@@ -2632,13 +2632,13 @@ safe_f! {
 }
 
 #[link(name = "thread")]
-extern "C" {
+#[cfg(feature = "extern_fn")] extern "C" {
     pub fn thr_kill(id: thread_t, sig: c_int) -> c_int;
     pub fn thr_self() -> thread_t;
 }
 
 #[link(name = "pthread")]
-extern "C" {
+#[cfg(feature = "extern_fn")] extern "C" {
     pub fn pthread_atfork(
         prepare: Option<unsafe extern "C" fn()>,
         parent: Option<unsafe extern "C" fn()>,
@@ -2750,7 +2750,7 @@ extern "C" {
 }
 
 #[link(name = "iconv")]
-extern "C" {
+#[cfg(feature = "extern_fn")] extern "C" {
     pub fn iconv(
         cd: iconv_t,
         inbuf: *mut *mut c_char,
@@ -2762,7 +2762,7 @@ extern "C" {
     pub fn iconv_open(tocode: *const c_char, fromcode: *const c_char) -> iconv_t;
 }
 
-extern "C" {
+#[cfg(feature = "extern_fn")] extern "C" {
     pub fn acct(filename: *const c_char) -> c_int;
     pub fn aio_cancel(fildes: c_int, aiocbp: *mut crate::aiocb) -> c_int;
     pub fn aio_error(aiocbp: *mut crate::aiocb) -> c_int;

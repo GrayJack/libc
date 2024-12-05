@@ -5642,7 +5642,7 @@ safe_f! {
     }
 }
 
-extern "C" {
+#[cfg(feature = "extern_fn")] extern "C" {
     pub fn setgrent();
     #[doc(hidden)]
     #[deprecated(since = "0.2.49", note = "Deprecated in MacOSX 10.5")]
@@ -6504,7 +6504,7 @@ extern "C" {
 
 cfg_if! {
     if #[cfg(target_os = "macos")] {
-        extern "C" {
+        #[cfg(feature = "extern_fn")] extern "C" {
             pub fn clock_settime(clock_id: crate::clockid_t, tp: *const crate::timespec) -> c_int;
         }
     }
@@ -6516,7 +6516,7 @@ cfg_if! {
         target_os = "tvos",
         target_os = "visionos"
     ))] {
-        extern "C" {
+        #[cfg(feature = "extern_fn")] extern "C" {
             pub fn memmem(
                 haystack: *const c_void,
                 haystacklen: size_t,

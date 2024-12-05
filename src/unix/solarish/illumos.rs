@@ -284,7 +284,7 @@ pub const B4000000: crate::speed_t = 31;
 // sys/systeminfo.h
 pub const SI_ADDRESS_WIDTH: c_int = 520;
 
-extern "C" {
+#[cfg(feature = "extern_fn")] extern "C" {
     pub fn eventfd(init: c_uint, flags: c_int) -> c_int;
 
     pub fn epoll_pwait(

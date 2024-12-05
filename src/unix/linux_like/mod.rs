@@ -1739,7 +1739,7 @@ safe_f! {
     }
 }
 
-extern "C" {
+#[cfg(feature = "extern_fn")] extern "C" {
     #[doc(hidden)]
     pub fn __libc_current_sigrtmax() -> c_int;
     #[doc(hidden)]
@@ -1873,7 +1873,7 @@ extern "C" {
 // * ulibc doesn't have preadv64/pwritev64
 cfg_if! {
     if #[cfg(not(any(target_env = "musl", target_os = "emscripten")))] {
-        extern "C" {
+        #[cfg(feature = "extern_fn")] extern "C" {
             pub fn fstatfs64(fd: c_int, buf: *mut statfs64) -> c_int;
             pub fn statvfs64(path: *const c_char, buf: *mut statvfs64) -> c_int;
             pub fn fstatvfs64(fd: c_int, buf: *mut statvfs64) -> c_int;
@@ -1930,7 +1930,7 @@ cfg_if! {
         target_env = "musl",
         target_os = "emscripten"
     )))] {
-        extern "C" {
+        #[cfg(feature = "extern_fn")] extern "C" {
             pub fn preadv64(
                 fd: c_int,
                 iov: *const crate::iovec,
@@ -1949,7 +1949,7 @@ cfg_if! {
 
 cfg_if! {
     if #[cfg(not(target_env = "uclibc"))] {
-        extern "C" {
+        #[cfg(feature = "extern_fn")] extern "C" {
             // uclibc has separate non-const version of this function
             pub fn forkpty(
                 amaster: *mut c_int,
@@ -1972,7 +1972,7 @@ cfg_if! {
 // The statx syscall, available on some libcs.
 cfg_if! {
     if #[cfg(any(target_env = "gnu", target_os = "android"))] {
-        extern "C" {
+        #[cfg(feature = "extern_fn")] extern "C" {
             pub fn statx(
                 dirfd: c_int,
                 pathname: *const c_char,

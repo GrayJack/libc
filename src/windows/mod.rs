@@ -280,14 +280,14 @@ cfg_if! {
             all(windows, target_env = "msvc"),
             link(name = "legacy_stdio_definitions")
         )]
-        extern "C" {
+        #[cfg(feature = "extern_fn")] extern "C" {
             pub fn printf(format: *const c_char, ...) -> c_int;
             pub fn fprintf(stream: *mut FILE, format: *const c_char, ...) -> c_int;
         }
     }
 }
 
-extern "C" {
+#[cfg(feature = "extern_fn")] extern "C" {
     pub fn isalnum(c: c_int) -> c_int;
     pub fn isalpha(c: c_int) -> c_int;
     pub fn iscntrl(c: c_int) -> c_int;

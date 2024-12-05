@@ -4,7 +4,7 @@
 mod t {
     use libc::{self, sock_extended_err, sockaddr};
 
-    extern "C" {
+    #[cfg(feature = "extern_fn")] extern "C" {
         pub fn so_ee_offender(ee: *const sock_extended_err) -> *mut sockaddr;
     }
 

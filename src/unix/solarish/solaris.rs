@@ -203,7 +203,7 @@ pub const PRIV_USER: c_uint = PRIV_DEBUG
     | PRIV_TPD_KILLABLE
     | PRIV_PROC_TPD_RESET;
 
-extern "C" {
+#[cfg(feature = "extern_fn")] extern "C" {
     pub fn fexecve(fd: c_int, argv: *const *mut c_char, envp: *const *mut c_char) -> c_int;
 
     pub fn mincore(addr: *mut c_void, len: size_t, vec: *mut c_char) -> c_int;

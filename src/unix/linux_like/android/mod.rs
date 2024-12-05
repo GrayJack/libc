@@ -3647,7 +3647,7 @@ safe_f! {
     }
 }
 
-extern "C" {
+#[cfg(feature = "extern_fn")] extern "C" {
     pub fn setgrent();
     pub fn endgrent();
     pub fn getgrent() -> *mut crate::group;

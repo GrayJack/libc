@@ -360,7 +360,7 @@ cfg_if! {
     }
 }
 
-extern "C" {
+#[cfg(feature = "extern_fn")] extern "C" {
     pub static in6addr_loopback: in6_addr;
     pub static in6addr_any: in6_addr;
 }
@@ -443,7 +443,7 @@ cfg_if! {
         #[link(name = "m", cfg(not(target_feature = "crt-static")))]
         #[link(name = "dl", cfg(not(target_feature = "crt-static")))]
         #[link(name = "c", cfg(not(target_feature = "crt-static")))]
-        extern "C" {}
+        #[cfg(feature = "extern_fn")] extern "C" {}
     } else if #[cfg(any(target_env = "musl", target_env = "ohos"))] {
         #[cfg_attr(
             feature = "rustc-dep-of-std",
@@ -458,7 +458,7 @@ cfg_if! {
             feature = "rustc-dep-of-std",
             link(name = "c", cfg(not(target_feature = "crt-static")))
         )]
-        extern "C" {}
+        #[cfg(feature = "extern_fn")] extern "C" {}
     } else if #[cfg(target_os = "emscripten")] {
         // Don't pass -lc to Emscripten, it breaks. See:
         // https://github.com/emscripten-core/emscripten/issues/22758
@@ -477,7 +477,7 @@ cfg_if! {
         )]
         #[link(name = "m", cfg(not(target_feature = "crt-static")))]
         #[link(name = "c", cfg(not(target_feature = "crt-static")))]
-        extern "C" {}
+        #[cfg(feature = "extern_fn")] extern "C" {}
     } else if #[cfg(any(
         target_os = "macos",
         target_os = "ios",
@@ -490,19 +490,19 @@ cfg_if! {
     ))] {
         #[link(name = "c")]
         #[link(name = "m")]
-        extern "C" {}
+        #[cfg(feature = "extern_fn")] extern "C" {}
     } else if #[cfg(target_os = "haiku")] {
         #[link(name = "root")]
         #[link(name = "network")]
-        extern "C" {}
+        #[cfg(feature = "extern_fn")] extern "C" {}
     } else if #[cfg(target_env = "newlib")] {
         #[link(name = "c")]
         #[link(name = "m")]
-        extern "C" {}
+        #[cfg(feature = "extern_fn")] extern "C" {}
     } else if #[cfg(target_env = "illumos")] {
         #[link(name = "c")]
         #[link(name = "m")]
-        extern "C" {}
+        #[cfg(feature = "extern_fn")] extern "C" {}
     } else if #[cfg(target_os = "redox")] {
         #[cfg_attr(
             feature = "rustc-dep-of-std",
@@ -517,19 +517,19 @@ cfg_if! {
             feature = "rustc-dep-of-std",
             link(name = "c", cfg(not(target_feature = "crt-static")))
         )]
-        extern "C" {}
+        #[cfg(feature = "extern_fn")] extern "C" {}
     } else if #[cfg(target_os = "aix")] {
         #[link(name = "c")]
         #[link(name = "m")]
         #[link(name = "bsd")]
         #[link(name = "pthread")]
-        extern "C" {}
+        #[cfg(feature = "extern_fn")] extern "C" {}
     } else {
         #[link(name = "c")]
         #[link(name = "m")]
         #[link(name = "rt")]
         #[link(name = "pthread")]
-        extern "C" {}
+        #[cfg(feature = "extern_fn")] extern "C" {}
     }
 }
 
@@ -540,7 +540,7 @@ missing! {
     pub enum fpos_t {} // FIXME: fill this out with a struct
 }
 
-extern "C" {
+#[cfg(feature = "extern_fn")] extern "C" {
     pub fn isalnum(c: c_int) -> c_int;
     pub fn isalpha(c: c_int) -> c_int;
     pub fn iscntrl(c: c_int) -> c_int;
@@ -683,7 +683,7 @@ extern "C" {
     pub fn memset(dest: *mut c_void, c: c_int, n: size_t) -> *mut c_void;
 }
 
-extern "C" {
+#[cfg(feature = "extern_fn")] extern "C" {
     #[cfg_attr(target_os = "netbsd", link_name = "__getpwnam50")]
     pub fn getpwnam(name: *const c_char) -> *mut passwd;
     #[cfg_attr(target_os = "netbsd", link_name = "__getpwuid50")]
@@ -1522,11 +1522,11 @@ cfg_if! {
         target_os = "nto",
         target_os = "solaris"
     )))] {
-        extern "C" {
+        #[cfg(feature = "extern_fn")] extern "C" {
             pub fn adjtime(delta: *const timeval, olddelta: *mut timeval) -> c_int;
         }
     } else if #[cfg(target_os = "solaris")] {
-        extern "C" {
+        #[cfg(feature = "extern_fn")] extern "C" {
             pub fn adjtime(delta: *mut timeval, olddelta: *mut timeval) -> c_int;
         }
     }
@@ -1538,7 +1538,7 @@ cfg_if! {
         target_os = "android",
         target_os = "nto"
     )))] {
-        extern "C" {
+        #[cfg(feature = "extern_fn")] extern "C" {
             pub fn stpncpy(dst: *mut c_char, src: *const c_char, n: size_t) -> *mut c_char;
         }
     }
@@ -1546,7 +1546,7 @@ cfg_if! {
 
 cfg_if! {
     if #[cfg(not(target_os = "android"))] {
-        extern "C" {
+        #[cfg(feature = "extern_fn")] extern "C" {
             #[cfg_attr(
                 all(target_os = "macos", target_arch = "x86"),
                 link_name = "confstr$UNIX2003"
@@ -1559,7 +1559,7 @@ cfg_if! {
 
 cfg_if! {
     if #[cfg(not(target_os = "aix"))] {
-        extern "C" {
+        #[cfg(feature = "extern_fn")] extern "C" {
             pub fn dladdr(addr: *const c_void, info: *mut Dl_info) -> c_int;
         }
     }
@@ -1567,7 +1567,7 @@ cfg_if! {
 
 cfg_if! {
     if #[cfg(not(target_os = "solaris"))] {
-        extern "C" {
+        #[cfg(feature = "extern_fn")] extern "C" {
             pub fn flock(fd: c_int, operation: c_int) -> c_int;
         }
     }
@@ -1575,7 +1575,7 @@ cfg_if! {
 
 cfg_if! {
     if #[cfg(not(any(target_env = "uclibc", target_os = "nto")))] {
-        extern "C" {
+        #[cfg(feature = "extern_fn")] extern "C" {
             pub fn open_wmemstream(ptr: *mut *mut wchar_t, sizeloc: *mut size_t) -> *mut FILE;
         }
     }
@@ -1583,7 +1583,7 @@ cfg_if! {
 
 cfg_if! {
     if #[cfg(not(target_os = "redox"))] {
-        extern "C" {
+        #[cfg(feature = "extern_fn")] extern "C" {
             pub fn getsid(pid: pid_t) -> pid_t;
             #[cfg_attr(
                 all(target_os = "macos", target_arch = "x86"),
@@ -1631,7 +1631,7 @@ cfg_if! {
 
 cfg_if! {
     if #[cfg(target_os = "nto")] {
-        extern "C" {
+        #[cfg(feature = "extern_fn")] extern "C" {
             pub fn readlinkat(
                 dirfd: c_int,
                 pathname: *const c_char,
@@ -1651,7 +1651,7 @@ cfg_if! {
                 -> c_int;
         }
     } else {
-        extern "C" {
+        #[cfg(feature = "extern_fn")] extern "C" {
             pub fn readlinkat(
                 dirfd: c_int,
                 pathname: *const c_char,
@@ -1692,14 +1692,14 @@ cfg_if! {
         target_os = "illumos",
         target_os = "nto",
     )))] {
-        extern "C" {
+        #[cfg(feature = "extern_fn")] extern "C" {
             pub fn cfmakeraw(termios: *mut crate::termios);
             pub fn cfsetspeed(termios: *mut crate::termios, speed: crate::speed_t) -> c_int;
         }
     }
 }
 
-extern "C" {
+#[cfg(feature = "extern_fn")] extern "C" {
     pub fn fnmatch(pattern: *const c_char, name: *const c_char, flags: c_int) -> c_int;
 }
 

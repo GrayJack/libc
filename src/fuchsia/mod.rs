@@ -3541,7 +3541,7 @@ fn __MHDR_END(mhdr: *const msghdr) -> *mut c_uchar {
 
 #[link(name = "c")]
 #[link(name = "fdio")]
-extern "C" {}
+#[cfg(feature = "extern_fn")] extern "C" {}
 
 #[cfg_attr(feature = "extra_traits", derive(Debug))]
 pub enum FILE {}
@@ -3560,7 +3560,7 @@ impl Clone for fpos_t {
     }
 }
 
-extern "C" {
+#[cfg(feature = "extern_fn")] extern "C" {
     pub fn isalnum(c: c_int) -> c_int;
     pub fn isalpha(c: c_int) -> c_int;
     pub fn iscntrl(c: c_int) -> c_int;

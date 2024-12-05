@@ -101,7 +101,7 @@ pub const SIGHUP: c_int = 1;
 pub const SIGQUIT: c_int = 3;
 pub const NSIG: size_t = 32;
 
-extern "C" {
+#[cfg(feature = "extern_fn")] extern "C" {
     pub fn pthread_create(
         native: *mut crate::pthread_t,
         attr: *const crate::pthread_attr_t,

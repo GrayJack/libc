@@ -1165,7 +1165,7 @@ cfg_if! {
     }
 }
 
-extern "C" {
+#[cfg(feature = "extern_fn")] extern "C" {
     pub fn fgetspent_r(
         fp: *mut crate::FILE,
         spbuf: *mut crate::spwd,

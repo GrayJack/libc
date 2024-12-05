@@ -651,7 +651,7 @@ safe_f! {
     }
 }
 
-extern "C" {
+#[cfg(feature = "extern_fn")] extern "C" {
     #[cfg_attr(
         all(target_os = "macos", target_arch = "x86"),
         link_name = "getrlimit$UNIX2003"
@@ -968,7 +968,7 @@ extern "C" {
 
 cfg_if! {
     if #[cfg(not(target_os = "openbsd"))] {
-        extern "C" {
+        #[cfg(feature = "extern_fn")] extern "C" {
             pub fn syscall(num: c_int, ...) -> c_int;
         }
     }

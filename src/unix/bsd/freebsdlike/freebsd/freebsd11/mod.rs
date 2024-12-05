@@ -453,7 +453,7 @@ f! {
     }
 }
 
-extern "C" {
+#[cfg(feature = "extern_fn")] extern "C" {
     // Return type c_int was removed in FreeBSD 12
     pub fn setgrent() -> c_int;
 
