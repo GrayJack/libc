@@ -11,7 +11,7 @@
 mod t {
     use libc;
 
-    extern "C" {
+    #[cfg(feature = "extern_fn")] extern "C" {
         pub fn sigrtmax() -> libc::c_int;
         pub fn sigrtmin() -> libc::c_int;
     }

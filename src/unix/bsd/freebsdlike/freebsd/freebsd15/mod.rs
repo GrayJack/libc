@@ -529,7 +529,7 @@ safe_f! {
     }
 }
 
-extern "C" {
+#[cfg(feature = "extern_fn")] extern "C" {
     pub fn setgrent();
     pub fn mprotect(addr: *mut c_void, len: size_t, prot: c_int) -> c_int;
     pub fn freelocale(loc: crate::locale_t);
@@ -563,7 +563,7 @@ extern "C" {
 }
 
 #[link(name = "kvm")]
-extern "C" {
+#[cfg(feature = "extern_fn")] extern "C" {
     pub fn kvm_kerndisp(kd: *mut crate::kvm_t) -> crate::kssize_t;
 }
 

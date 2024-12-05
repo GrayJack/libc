@@ -8,7 +8,7 @@ mod t {
 
     use libc::{self, c_uchar, c_uint, c_void, cmsghdr, msghdr};
 
-    extern "C" {
+    #[cfg(feature = "extern_fn")] extern "C" {
         pub fn cmsg_firsthdr(msgh: *const msghdr) -> *mut cmsghdr;
         // see below
         #[cfg(not(target_arch = "sparc64"))]

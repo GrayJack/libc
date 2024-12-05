@@ -1164,7 +1164,7 @@ f! {
     }
 }
 
-extern "C" {
+#[cfg(feature = "extern_fn")] extern "C" {
     pub fn isalnum(c: c_int) -> c_int;
     pub fn isalpha(c: c_int) -> c_int;
     pub fn iscntrl(c: c_int) -> c_int;
@@ -1257,7 +1257,7 @@ extern "C" {
     pub fn memset(dest: *mut c_void, c: c_int, n: size_t) -> *mut c_void;
 }
 
-extern "C" {
+#[cfg(feature = "extern_fn")] extern "C" {
     pub fn fprintf(stream: *mut crate::FILE, format: *const c_char, ...) -> c_int;
     pub fn printf(format: *const c_char, ...) -> c_int;
     pub fn snprintf(s: *mut c_char, n: size_t, format: *const c_char, ...) -> c_int;
@@ -1375,7 +1375,7 @@ extern "C" {
 
 }
 
-extern "C" {
+#[cfg(feature = "extern_fn")] extern "C" {
     // stdlib.h
     pub fn memalign(block_size: size_t, size_arg: size_t) -> *mut c_void;
 

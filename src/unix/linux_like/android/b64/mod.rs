@@ -304,6 +304,7 @@ f! {
     }
 }
 
+#[cfg(feature = "extern_fn")]
 extern "C" {
     pub fn __system_property_wait(
         pi: *const crate::prop_info,

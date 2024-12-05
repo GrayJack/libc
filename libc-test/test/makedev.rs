@@ -52,6 +52,7 @@ cfg_if::cfg_if! {
     }
 }
 
+#[cfg(feature = "extern_fn")]
 extern "C" {
     pub fn makedev_ffi(major: c_uint, minor: c_uint) -> dev_t;
     pub fn major_ffi(dev: dev_t) -> c_uint;
