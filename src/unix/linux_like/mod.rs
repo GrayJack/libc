@@ -1661,10 +1661,12 @@ f! {
 }
 
 safe_f! {
+    #[cfg(feature = "extern_fn")]
     pub fn SIGRTMAX() -> c_int {
         unsafe { __libc_current_sigrtmax() }
     }
 
+    #[cfg(feature = "extern_fn")]
     pub fn SIGRTMIN() -> c_int {
         unsafe { __libc_current_sigrtmin() }
     }
@@ -1739,7 +1741,8 @@ safe_f! {
     }
 }
 
-#[cfg(feature = "extern_fn")] extern "C" {
+#[cfg(feature = "extern_fn")]
+extern "C" {
     #[doc(hidden)]
     pub fn __libc_current_sigrtmax() -> c_int;
     #[doc(hidden)]

@@ -3569,7 +3569,8 @@ f! {
     }
 }
 
-#[cfg(feature = "extern_fn")] extern "C" {
+#[cfg(feature = "extern_fn")]
+extern "C" {
     pub fn lutimes(file: *const c_char, times: *const crate::timeval) -> c_int;
 
     pub fn futimes(fd: c_int, times: *const crate::timeval) -> c_int;
@@ -4570,6 +4571,7 @@ safe_f! {
         unsafe { __libc_current_sigrtmax() }
     }
 
+    #[cfg(feature = "extern_fn")]
     pub fn SIGRTMIN() -> c_int {
         unsafe { __libc_current_sigrtmin() }
     }
