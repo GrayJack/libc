@@ -4925,6 +4925,7 @@ f! {
         (_ALIGN(mem::size_of::<cmsghdr>()) + _ALIGN(length as usize)) as c_uint
     }
 
+    #[cfg(feature = "extern_fn")]
     pub fn MALLOCX_ALIGN(lg: c_uint) -> c_int {
         ffsl(lg as c_long - 1)
     }
@@ -4942,6 +4943,7 @@ f! {
         mem::size_of::<sockcred>() + mem::size_of::<crate::gid_t>() * ngrps
     }
 
+    #[cfg(feature = "extern_fn")]
     pub fn uname(buf: *mut crate::utsname) -> c_int {
         __xuname(256, buf as *mut c_void)
     }
@@ -5060,7 +5062,8 @@ cfg_if! {
     }
 }
 
-#[cfg(feature = "extern_fn")] extern "C" {
+#[cfg(feature = "extern_fn")]
+extern "C" {
     #[cfg_attr(doc, doc(alias = "__errno_location"))]
     #[cfg_attr(doc, doc(alias = "errno"))]
     pub fn __error() -> *mut c_int;
@@ -5593,7 +5596,8 @@ cfg_if! {
 }
 
 #[link(name = "memstat")]
-#[cfg(feature = "extern_fn")] extern "C" {
+#[cfg(feature = "extern_fn")]
+extern "C" {
     pub fn memstat_strerror(error: c_int) -> *const c_char;
     pub fn memstat_mtl_alloc() -> *mut memory_type_list;
     pub fn memstat_mtl_first(list: *mut memory_type_list) -> *mut memory_type;
@@ -5609,7 +5613,8 @@ cfg_if! {
 }
 
 #[link(name = "kvm")]
-#[cfg(feature = "extern_fn")] extern "C" {
+#[cfg(feature = "extern_fn")]
+extern "C" {
     pub fn kvm_dpcpu_setcpu(kd: *mut crate::kvm_t, cpu: c_uint) -> c_int;
     pub fn kvm_getargv(
         kd: *mut crate::kvm_t,
@@ -5652,7 +5657,8 @@ cfg_if! {
 }
 
 #[link(name = "util")]
-#[cfg(feature = "extern_fn")] extern "C" {
+#[cfg(feature = "extern_fn")]
+extern "C" {
     pub fn extattr_namespace_to_string(attrnamespace: c_int, string: *mut *mut c_char) -> c_int;
     pub fn extattr_string_to_namespace(string: *const c_char, attrnamespace: *mut c_int) -> c_int;
     pub fn realhostname(host: *mut c_char, hsize: size_t, ip: *const crate::in_addr) -> c_int;
@@ -5696,7 +5702,8 @@ cfg_if! {
 }
 
 #[link(name = "procstat")]
-#[cfg(feature = "extern_fn")] extern "C" {
+#[cfg(feature = "extern_fn")]
+extern "C" {
     pub fn procstat_open_sysctl() -> *mut procstat;
     pub fn procstat_getfiles(
         procstat: *mut procstat,
@@ -5788,7 +5795,8 @@ cfg_if! {
 }
 
 #[link(name = "rt")]
-#[cfg(feature = "extern_fn")] extern "C" {
+#[cfg(feature = "extern_fn")]
+extern "C" {
     pub fn timer_create(clock_id: clockid_t, evp: *mut sigevent, timerid: *mut timer_t) -> c_int;
     pub fn timer_delete(timerid: timer_t) -> c_int;
     pub fn timer_getoverrun(timerid: timer_t) -> c_int;
@@ -5802,7 +5810,8 @@ cfg_if! {
 }
 
 #[link(name = "devstat")]
-#[cfg(feature = "extern_fn")] extern "C" {
+#[cfg(feature = "extern_fn")]
+extern "C" {
     pub fn devstat_getnumdevs(kd: *mut crate::kvm_t) -> c_int;
     pub fn devstat_getgeneration(kd: *mut crate::kvm_t) -> c_long;
     pub fn devstat_getversion(kd: *mut crate::kvm_t) -> c_int;
